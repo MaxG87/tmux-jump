@@ -15,7 +15,7 @@ RESTORE_NORMAL_SCREEN = "\e[?1049l"
 
 # CONFIG
 KEYS_POSITION = ENV['JUMP_KEYS_POSITION']
-KEYS = 'jfhgkdlsa'.each_char.to_a
+KEYS = ENV['JUMP_KEYS'].each_char.to_a
 Config = Struct.new(
   :pane_nr,
   :pane_tty_file,
