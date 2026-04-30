@@ -77,8 +77,9 @@ set -g @jump-keys-position 'off_left'
 ```
 
 And the jump characters used to label positions (default: `jfhgkdlsa`):
+
 ```
-set -g @jump-keys 'asdfghjkl'
+set -g @jump-keys 'etinsrch'
 ```
 
 ## Similar Projects
