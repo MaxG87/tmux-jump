@@ -63,6 +63,48 @@ RSpec.describe 'tmux-jump' do
         expect(positions_of('s', simple_screen)).to eq []
       end
     end
+
+    context 'with ignorecase (default)' do
+      let(:mixed_case_screen) { "Hello hello HELLO" }
+
+      it 'matches lowercase and uppercase chars regardless of input case' do
+        expect(positions_of('h', mixed_case_screen)).to eq [0, 6, 12]
+        expect(positions_of('H', mixed_case_screen)).to eq [0, 6, 12]
+      end
+    end
+
+    context 'with casesensitive' do
+      around do |example|
+        ENV['JUMP_KEY_CASE'] = 'casesensitive'
+        example.run
+        ENV.delete('JUMP_KEY_CASE')
+      end
+
+      let(:mixed_case_screen) { "Hello hello HELLO" }
+
+      it 'only matches chars with the same case as input' do
+        expect(positions_of('h', mixed_case_screen)).to eq [6]
+        expect(positions_of('H', mixed_case_screen)).to eq [0, 12]
+      end
+    end
+
+    context 'with smartcase' do
+      around do |example|
+        ENV['JUMP_KEY_CASE'] = 'smartcase'
+        example.run
+        ENV.delete('JUMP_KEY_CASE')
+      end
+
+      let(:mixed_case_screen) { "Hello hello HELLO" }
+
+      it 'is case-insensitive when input is lowercase' do
+        expect(positions_of('h', mixed_case_screen)).to eq [0, 6, 12]
+      end
+
+      it 'is case-sensitive when input is uppercase' do
+        expect(positions_of('H', mixed_case_screen)).to eq [0, 12]
+      end
+    end
   end
 
   describe 'keys_for' do

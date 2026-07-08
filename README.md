@@ -76,6 +76,18 @@ set -g @jump-keys-position 'left'
 set -g @jump-keys-position 'off_left'
 ```
 
+And the case sensitivity:
+```
+# case-insensitive search (default)
+set -g @jump-key-case 'ignorecase'
+
+# case-sensitive only when the search character is uppercase
+set -g @jump-key-case 'smartcase'
+
+# always case-sensitive
+set -g @jump-key-case 'casesensitive'
+```
+
 ## Similar Projects
 
 * [vimium](https://vimium.github.io/)
