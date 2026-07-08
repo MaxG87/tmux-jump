@@ -76,6 +76,12 @@ set -g @jump-keys-position 'left'
 set -g @jump-keys-position 'off_left'
 ```
 
+And the jump characters used to label positions (default: `jfhgkdlsa`):
+
+```
+set -g @jump-keys 'etinsrch'
+```
+
 ## Similar Projects
 
 * [vimium](https://vimium.github.io/)
