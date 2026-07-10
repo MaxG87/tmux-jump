@@ -76,6 +76,11 @@ set -g @jump-keys-position 'left'
 set -g @jump-keys-position 'off_left'
 ```
 
+And the keys:
+```
+set -g @jump-keys 'aoeuidhtns'
+```
+
 ## Similar Projects
 
 * [vimium](https://vimium.github.io/)
