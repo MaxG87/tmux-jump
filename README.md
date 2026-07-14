@@ -82,6 +82,23 @@ And the jump characters used to label positions (default: `jfhgkdlsa`):
 set -g @jump-keys 'etinsrch'
 ```
 
+The case sensitivity setting can be configured as well. The default is
+case-insensitive search. With casesensitive tmux-jump will only match the
+search character if the case matches. With smartcase, tmux-jump will match the
+search character case-insensitively if the search character is lowercase, and
+case-sensitively if the search character is uppercase.
+
+```
+# case-insensitive search (default)
+set -g @jump-key-case 'ignorecase'
+
+# case-sensitive only when the search character is uppercase
+set -g @jump-key-case 'smartcase'
+
+# always case-sensitive
+set -g @jump-key-case 'casesensitive'
+```
+
 ## Similar Projects
 
 * [vimium](https://vimium.github.io/)

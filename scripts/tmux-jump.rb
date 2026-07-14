@@ -131,12 +131,23 @@ def async_detect_user_escape(result_queue)
   end
 end
 
+def matches_case?(char, jump_to_char)
+  case ENV.fetch('JUMP_KEY_CASE', 'ignorecase')
+  when 'casesensitive'
+    char == jump_to_char
+  when 'smartcase'
+    jump_to_char =~ /[[:upper:]]/ ? char == jump_to_char : char.downcase == jump_to_char
+  else # ignorecase (default)
+    char.downcase == jump_to_char.downcase
+  end
+end
+
 def positions_of(jump_to_char, screen_chars)
   positions = []
 
-  positions << 0 if screen_chars[0] =~ /\w/ && screen_chars[0].downcase == jump_to_char
+  positions << 0 if screen_chars[0] =~ /\w/ && matches_case?(screen_chars[0], jump_to_char)
   screen_chars.each_char.with_index do |char, i|
-    if (char =~ /\w/).nil? && screen_chars[i+1] && screen_chars[i+1].downcase == jump_to_char
+    if (char =~ /\w/).nil? && screen_chars[i+1] && matches_case?(screen_chars[i+1], jump_to_char)
       positions << i+1
     end
   end
