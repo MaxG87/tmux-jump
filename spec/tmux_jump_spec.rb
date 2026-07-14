@@ -65,6 +65,14 @@ RSpec.describe 'tmux-jump' do
     end
   end
 
+  describe '#row_col_for' do
+    it 'returns the correct row and column for positions after a newline' do
+      expect(row_col_for(9, simple_screen)).to eq [0, 9]
+      expect(row_col_for(46, simple_screen)).to eq [1, 0]
+      expect(row_col_for(59, simple_screen)).to eq [1, 13]
+    end
+  end
+
   describe 'keys_for' do
     [
       [1, KEYS.size, 1],
